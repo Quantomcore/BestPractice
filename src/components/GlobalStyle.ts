@@ -9,11 +9,11 @@ export const globalStyle = StyleSheet.create({
     justifyContent: 'center',
     paddingBottom: 50,
     paddingHorizontal: 30,
+    backgroundColor: Colors.background
   },
   buttonWrapper: {
     width: '100%',
     gap: 30,
-    backgroundColor: Colors.textInverted
   },
    textWrapper: {
     flex: 1,

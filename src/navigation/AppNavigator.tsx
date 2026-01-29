@@ -5,14 +5,23 @@ import { RootStackParamList } from './RootStackParams'; // Adjust path as needed
 import { TabNavigator } from './TabNavigator';
 import { useAuth } from '../state/AuthContext';
 import { LoginScreen, RegistrationScreen } from '../screens'
+import { View } from 'react-native';
+import { AppText, globalStyle } from '../components';
 
 // Define the Stack type using the param list
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const AppNavigator: React.FC = () => {
 // In a real app, get this from your Auth Context/State
-  const { isLoggedIn } = useAuth()
-  return (
+  const { isLoggedIn, isLoading } = useAuth()
+    if (isLoading) {
+      return (
+        <View style = {globalStyle.container}>
+          <AppText variant='h1' color= 'primary'>Best Practice</AppText>
+        </View>
+      )
+    }
+    return (
     <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
         {isLoggedIn ? (
@@ -27,7 +36,7 @@ const AppNavigator: React.FC = () => {
         )}
         </Stack.Navigator>
     </NavigationContainer>
-  );
+  )
 };
 
 export default AppNavigator;
